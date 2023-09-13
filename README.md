@@ -1,2 +1,5 @@
-# Prepavenir
-Tous ce qui est en rapport avec la formation prepavenir
+# Algorithme DAB
+
+Concetion d'un algorithme DAB, sous forme de pseudo-code.
+
+---
