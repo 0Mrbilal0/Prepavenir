@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1 align="center">Retrait DAB</h1>
+    <p align="center">
+        Veuillez cliquer sur le bouton ci-dessous pour retirer de l'argent
+    </p>
+    <button onclick="cardChecker()">Commencer</button>
+    <div class="app"></div>
+
+    <script>
+        // Variables
+        const clientBalance = 1200
+        const atmBalance = 1200
+        const passCard = 9513
+        const app = document.querySelector(".app")
+        app.style = 'front-size: 20px'
+
+        // Functions
+        /*
+            Type de cartes de l'app :
+            1 : CB Valide
+            2 : CB Bloquée
+            3 : CB Non valide
+        */
+
+        /*
+        * Cette fonction permet de vérifier la validité de la carte :
+        * À l'aide d'une condition nous allons vérifier que la carte
+        * est 2 ou 1. Tous les autres scénario seront "CB Non valide".
+        * Lorsqu le résultat est 1 on lance la fonction passChecker()
+        */
+        function cardChecker() {
+            let card = parseInt(prompt('Choisissez une carte : 1, 2 ou 3'))
+
+            if (card === 2 || card != 1) {
+                if (card === 2) {
+                    app.innerText = 'CB Bloquée'
+                } else {
+                    app.innerText = 'CB Non valide'
+                }
+            }
+            else {
+                passChecker()
+            }
+        }
+
+        /* 
+        * Cette fonction permet de vérifier le code de la carte :
+        * À l'aide d'une boucle nous allons permettre 3 essais
+        * Si un des 3 essais est valide, on met le compte de la boucle
+        * au maximum afin de l'arrêter et on lance la fonction pour
+        * choisir le montant à retirer.
+        */
+        function passChecker() {
+            console.log('CB Validé');
+            app.innerText = 'CB Valide'
+
+            for (let index = 0; index < 3; index++) {
+                let passPrompt = parseInt(prompt('Saisissez votre code'))
+                if (passPrompt === passCard) {
+                    index = 3
+                    amountChoice()
+                }
+            }
+        }
+
+        function amountChoice() {
+            app.innerText = 'Combien voulez-vous retirer ?'
+
+        }
+    </script>
+    
+</body>
+</html>
