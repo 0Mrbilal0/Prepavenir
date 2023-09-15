@@ -2,7 +2,7 @@
 
 Prépavenir as besoin d'un système de gestion pour les demande d'inscription aux formations du catalogue.
 
-### Le catalogue 
+## Le catalogue 
 
 Faire un formulaire pour toute les formations contenant
 
@@ -23,12 +23,12 @@ optionnel : Convertion du formulaire en PDF, Alarme qui permet d'avertir la date
 
 ---
 
-Pseudo-Code: 
+## **Scénario:**
 
 ```text
 Le candidat clic sur un boutton pour avoir acces au formulaire de candidature, il aura une page qui contiendra un formulaire qu'il devra remplir puis envoyer.
 
-Le formulaire contiendra un selecteur pour les differentes formations qui changera le formulaire en fonction de la formation, des disponibilités de la formation (complet, sessions de recrutement.), ses information personnel, et une case pour upload les des fichier (CV, lettre de motivation).
+Le formulaire contiendra un selecteur pour les differentes formations qui changera le formulaire en fonction de la formation, des disponibilités de la formation (complet, sessions de recrutement.), ses informations personnels, et une case pour upload les fichier (CV, lettre de motivation).
 
 Lorsque le formulaire est envoyé, le candidat recevra un accusé de reception contenant la vérification de ces informations personnels (peut etre dangereux), ainsi qu'un numéro de suivi ( pour voir où en est ca candidature ). Le mail est donc recu par le client (contact@prepavenir.fr) en pdf et traité.
 
@@ -44,5 +44,23 @@ SI rôle == admin
             ALORS envoyer un mail au candidat qui dit qu'il est refuser en lui proposant d'autres formations
 SINON SI rôle == assis
     ALORS Afficher d'autres fonctionnalités
+```
+
+## **Pseudo-Code:**
+
+```text
+Le candidat appuie sur le boutton "Candidater"
+Le processus formulaire de candidature se lance
+SI candidat.Click sur envoyé
+    ALORS le processus vérification du formulaire est lancer
+    SI le formulaire est conforme
+        ALORS le formulaire est converti en pdf
+        ET Le formulaire est envoyé par mail avec le pdf en piece jointe
+    SINON 
+        Un message indiquant que le formulaire n'est pas conforme est affiché
+SI le client recoit la candidature
+    ALORS un accusé de reception est envoyé au candidat
+    ET la candidature apparait dans l'espace personnel du client dans la categorie lié au nom de la formation
+
 
 ```
