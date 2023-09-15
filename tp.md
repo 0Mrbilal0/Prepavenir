@@ -57,10 +57,28 @@ SI candidat.Click sur envoyé
         ALORS le formulaire est converti en pdf
         ET Le formulaire est envoyé par mail avec le pdf en piece jointe
     SINON 
-        Un message indiquant que le formulaire n'est pas conforme est affiché
-SI le client recoit la candidature
-    ALORS un accusé de reception est envoyé au candidat
-    ET la candidature apparait dans l'espace personnel du client dans la categorie lié au nom de la formation
-
+        Un message indiquant que le formulaire n'est pas conforme est affiché dans les cases concernés
+Le client recoit la candidature
+client.Envoie de l'accusé de reception aux candidats
+client.Notification push/mail aux users
+TANT QUE candidature =! "traité"
+    ALORS 
+        client.Envoyé notification de rappel aux users
+users.Traiter la demande
+client.Notifier le candidat
+client.Mettre à jour le suivi
+SI candidats == "non-retenus"
+    ALORS 
+        client.Notifier le candidat
+        client.Archiver le dossier
+SINON
+    client.Notifier le candidat
+    client.Ajouter le candidat à la liste
+    SI candidats == "inscription rejeté"
+        ALORS  
+            client.Notifier le candidat
+            client.Archiver le dossier
+    SINON
+        client.Mettre candidats en tant qu'étudiant
 
 ```
